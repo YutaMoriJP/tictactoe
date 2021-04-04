@@ -9,7 +9,7 @@ const SquareStyled = styled.article`
     border: 0;
     width: 100%;
     height: 100%;
-    cursor: pointer;
+    cursor: ${props => !props.winner && "pointer"};
     font-size: 5rem;
     color: ${props => (props.x ? "#a5d8ff" : "#fcc2d7")};
     background-color: ${({ winner, x }) =>
