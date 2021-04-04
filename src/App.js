@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import Layout from "./components/layout/Layout";
+import Game from "./components/Game";
+import Confetti from "react-confetti";
 
-function App() {
+const App = () => {
+  const [over, setOver] = useState(false);
+  const [w, setW] = useState(window.innerWidth);
+  const [h, setH] = useState(window.innerHeight);
+  useEffect(() => {
+    const handleResize = () => {
+      setW(window.innerWidth);
+      setH(window.innerHeight);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener(handleResize);
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      {over && <Confetti width={w} height={h} />}
+      <Game setOver={setOver} />
+    </Layout>
   );
-}
+};
 
 export default App;
