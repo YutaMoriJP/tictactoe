@@ -13,6 +13,7 @@ const Game = ({ setOver }) => {
   const reset = useCallback(() => {
     setBoard(generateBoard());
     setOver(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const winner = gameHelper(board);
   const winningFormula = getWinningFormula(board);
