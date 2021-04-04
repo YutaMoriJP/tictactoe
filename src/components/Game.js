@@ -1,6 +1,8 @@
 import React, { useState, useCallback, useEffect } from "react";
 import Board from "./Board";
 import { GameStyled } from "../styled/GameStyled";
+import Text from "../styled/Text";
+
 import gameHelper from "../helpers/gameHelper";
 import generateBoard from "../helpers/generateBoard";
 import getWinningFormula from "../helpers/getWinningFormula";
@@ -58,16 +60,17 @@ const Game = ({ setOver }) => {
           onClick={reset}
           disabled={!gameOver()}
           over={!gameOver() ? 1 : 0}
+          aria-label="Reset Game"
         >
           reset game
         </Button>
-        <h1>
+        <Text>
           {winner
             ? `Winner is ${winner}`
             : noWinner()
             ? "No Winner"
             : `Next Player is ${x ? "X" : "O"}`}
-        </h1>{" "}
+        </Text>
       </GameStyled>
     </>
   );
